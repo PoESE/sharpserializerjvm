@@ -57,11 +57,6 @@ public class DeserializedPackets {
 
 		serializer.serialize(count);
 		for (final Property property : packets) {
-			uk.me.mantas.eternity.game.ObjectPersistencePacket p = (uk.me.mantas.eternity.game.ObjectPersistencePacket)property.obj;
-			if(p.ObjectName.startsWith("InGameGlobal")) {
-				int a = 1;
-				a++;
-			}
 			serializer.serialize(property);
 		}
 	}

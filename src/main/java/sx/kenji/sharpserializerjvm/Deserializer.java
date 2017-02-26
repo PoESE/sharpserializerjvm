@@ -24,13 +24,10 @@ import com.google.common.primitives.UnsignedInteger;
 import uk.me.mantas.eternity.Logger;
 import uk.me.mantas.eternity.serializer.properties.*;
 
-import java.io.ByteArrayInputStream;
 import java.io.DataInput;
-import java.io.DataInputStream;
 import java.io.IOException;
 import java.lang.reflect.Field;
 import java.nio.ByteBuffer;
-import java.nio.charset.StandardCharsets;
 import java.util.*;
 import java.util.function.Function;
 
@@ -43,8 +40,8 @@ public class Deserializer {
 	private static final Logger logger = Logger.getLogger(Deserializer.class);
 	private final SharpSerializer parent;
 	private final DataInput stream;
-	public final List<String> names = new ArrayList<>();
-	public final List<TypePair> types = new ArrayList<>();
+	private final List<String> names = new ArrayList<>();
+	private final List<TypePair> types = new ArrayList<>();
 
 	private Map<Integer, ReferenceTargetProperty> propertyCache =
 		new HashMap<>();
@@ -166,9 +163,6 @@ public class Deserializer {
 		throws IOException {
 
 		String propertyName = readName();
-		if(propertyName != null ) {
-			System.out.write(1);
-		}
 		return deserialize(elementID, propertyName, expectedType);
 	}
 
@@ -290,12 +284,6 @@ public class Deserializer {
 		byte elementID = stream.readByte();
 		Property keyProperty = deserialize(elementID, keyType);
 
-		try {
-			if (((String) ((SimpleProperty) keyProperty).value).contains("ActiveQuests")) {
-				System.out.write(1);
-			}
-		} catch(Exception e) {}
-
 		// Value
 		elementID = stream.readByte();
 		Property valueProperty = deserialize(elementID, valueType);
@@ -328,15 +316,6 @@ public class Deserializer {
 	private void parseComplexProperty (ComplexProperty property)
 		throws IOException {
 
-		if(property.properties.size() == 2) {
-			DictionaryProperty p = (DictionaryProperty)property.properties.get(1);
-			if(p.items.size() == 5) {
-				String v = (String)((SimpleProperty)p.items.get(2).getKey()).value;
-				if(v.contains("ActiveQuests")) {
-					System.out.write(1);
-				}
-			}
-		}
 		readProperties(property.properties, property.type.type);
 	}
 
@@ -375,12 +354,6 @@ public class Deserializer {
 		throws IOException {
 
 		property.value = readValue(property.type.type);
-		if(property.value instanceof String) {
-			String v = (String)property.value;
-			if(v.contains("InGame")) {
-				System.out.write(1);
-			}
-		}
 	}
 
 	private Object readValue (Class expectedType) throws IOException {

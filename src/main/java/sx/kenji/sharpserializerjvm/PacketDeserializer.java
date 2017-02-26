@@ -20,7 +20,6 @@ package sx.kenji.sharpserializerjvm;
 
 import uk.me.mantas.eternity.environment.Environment;
 import uk.me.mantas.eternity.factory.SharpSerializerFactory;
-import uk.me.mantas.eternity.game.ObjectPersistencePacket;
 import uk.me.mantas.eternity.serializer.properties.Property;
 import uk.me.mantas.eternity.serializer.properties.ReferenceTargetProperty;
 import uk.me.mantas.eternity.serializer.properties.SimpleProperty;
