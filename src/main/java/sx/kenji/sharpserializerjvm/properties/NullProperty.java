@@ -17,7 +17,7 @@
  */
 
 
-package uk.me.mantas.eternity.serializer.properties;
+package sx.kenji.sharpserializerjvm.properties;
 
 public class NullProperty extends Property {
 	public NullProperty (String name) {

@@ -17,7 +17,7 @@
  */
 
 
-package uk.me.mantas.eternity.serializer;
+package sx.kenji.sharpserializerjvm;
 
 import uk.me.mantas.eternity.serializer.properties.*;
 import uk.me.mantas.eternity.serializer.write.*;

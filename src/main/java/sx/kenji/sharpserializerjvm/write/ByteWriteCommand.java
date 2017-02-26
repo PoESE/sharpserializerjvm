@@ -17,7 +17,7 @@
  */
 
 
-package uk.me.mantas.eternity.serializer.write;
+package sx.kenji.sharpserializerjvm.write;
 
 import java.io.IOException;
 

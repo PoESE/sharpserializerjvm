@@ -17,7 +17,7 @@
  */
 
 
-package uk.me.mantas.eternity.serializer;
+package sx.kenji.sharpserializerjvm;
 
 import java.util.Iterator;
 import java.util.Map.Entry;

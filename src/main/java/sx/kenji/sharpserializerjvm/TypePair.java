@@ -17,7 +17,7 @@
  */
 
 
-package uk.me.mantas.eternity.serializer;
+package sx.kenji.sharpserializerjvm;
 
 public class TypePair {
 	public Class type;

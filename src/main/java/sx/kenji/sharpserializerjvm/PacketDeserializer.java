@@ -16,7 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package uk.me.mantas.eternity.serializer;
+package sx.kenji.sharpserializerjvm;
 
 import uk.me.mantas.eternity.environment.Environment;
 import uk.me.mantas.eternity.factory.SharpSerializerFactory;

@@ -17,7 +17,7 @@
  */
 
 
-package uk.me.mantas.eternity.serializer;
+package sx.kenji.sharpserializerjvm;
 
 // We host our own implementation of SharpSerializer which is used in
 // Pillars of Eternity to serialize game objects into saves.

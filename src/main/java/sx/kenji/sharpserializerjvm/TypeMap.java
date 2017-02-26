@@ -17,7 +17,7 @@
  */
 
 
-package uk.me.mantas.eternity.serializer;
+package sx.kenji.sharpserializerjvm;
 
 import com.google.common.primitives.UnsignedInteger;
 import uk.me.mantas.eternity.game.*;
