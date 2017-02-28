@@ -21,8 +21,9 @@ package sx.kenji.sharpserializerjvm;
 
 import com.google.common.primitives.Shorts;
 import com.google.common.primitives.UnsignedInteger;
+import sx.kenji.sharpserializerjvm.SharpSerializer.Elements;
+import sx.kenji.sharpserializerjvm.properties.*;
 import uk.me.mantas.eternity.Logger;
-import uk.me.mantas.eternity.serializer.properties.*;
 
 import java.io.DataInput;
 import java.io.IOException;
@@ -33,8 +34,6 @@ import java.util.function.Function;
 
 import static java.util.AbstractMap.Entry;
 import static java.util.AbstractMap.SimpleImmutableEntry;
-import static uk.me.mantas.eternity.serializer.SharpSerializer.Elements;
-import static uk.me.mantas.eternity.serializer.SharpSerializer.typeMap;
 
 public class Deserializer {
 	private static final Logger logger = Logger.getLogger(Deserializer.class);

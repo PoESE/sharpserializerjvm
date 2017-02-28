@@ -19,18 +19,17 @@
 
 package sx.kenji.sharpserializerjvm;
 
-import uk.me.mantas.eternity.serializer.properties.*;
-import uk.me.mantas.eternity.serializer.write.*;
+import sx.kenji.sharpserializerjvm.SharpSerializer.Elements;
+import sx.kenji.sharpserializerjvm.properties.*;
+import sx.kenji.sharpserializerjvm.properties.MultiDimensionalArrayProperty.ArrayDimension;
+import sx.kenji.sharpserializerjvm.properties.MultiDimensionalArrayProperty.MultiDimensionalArrayItem;
+import sx.kenji.sharpserializerjvm.write.*;
 
 import java.io.DataOutput;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map.Entry;
-
-import static uk.me.mantas.eternity.serializer.SharpSerializer.Elements;
-import static uk.me.mantas.eternity.serializer.properties.MultiDimensionalArrayProperty.ArrayDimension;
-import static uk.me.mantas.eternity.serializer.properties.MultiDimensionalArrayProperty.MultiDimensionalArrayItem;
 
 public class Serializer {
 	private static final String rootName = "Root";

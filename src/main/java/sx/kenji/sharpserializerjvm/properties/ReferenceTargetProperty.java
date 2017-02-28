@@ -19,7 +19,7 @@
 
 package sx.kenji.sharpserializerjvm.properties;
 
-import uk.me.mantas.eternity.serializer.TypePair;
+import sx.kenji.sharpserializerjvm.TypePair;
 
 public abstract class ReferenceTargetProperty extends Property {
 	public Reference reference;

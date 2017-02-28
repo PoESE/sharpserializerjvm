@@ -22,8 +22,8 @@ package sx.kenji.sharpserializerjvm.write;
 import com.google.common.primitives.Ints;
 import com.google.common.primitives.Longs;
 import com.google.common.primitives.UnsignedInteger;
+import sx.kenji.sharpserializerjvm.CSharpType;
 import uk.me.mantas.eternity.Logger;
-import uk.me.mantas.eternity.serializer.CSharpType;
 
 import java.io.DataOutput;
 import java.io.IOException;

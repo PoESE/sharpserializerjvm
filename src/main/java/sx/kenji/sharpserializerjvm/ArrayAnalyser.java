@@ -19,13 +19,13 @@
 
 package sx.kenji.sharpserializerjvm;
 
+import sx.kenji.sharpserializerjvm.properties.MultiDimensionalArrayProperty.ArrayDimension;
+
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import static uk.me.mantas.eternity.serializer.properties.MultiDimensionalArrayProperty.ArrayDimension;
 
 public class ArrayAnalyser {
 	List<ArrayDimension> dimensions = new ArrayList<>();

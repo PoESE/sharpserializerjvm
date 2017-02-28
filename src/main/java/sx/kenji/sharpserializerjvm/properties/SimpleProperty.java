@@ -19,7 +19,7 @@
 
 package sx.kenji.sharpserializerjvm.properties;
 
-import uk.me.mantas.eternity.serializer.TypePair;
+import sx.kenji.sharpserializerjvm.TypePair;
 
 public class SimpleProperty extends Property {
 	public Object value;

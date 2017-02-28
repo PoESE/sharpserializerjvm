@@ -19,7 +19,7 @@
 
 package sx.kenji.sharpserializerjvm;
 
-import uk.me.mantas.eternity.serializer.properties.Property;
+import sx.kenji.sharpserializerjvm.properties.Property;
 
 public class PropertyTypeInfo {
 	public Property property;

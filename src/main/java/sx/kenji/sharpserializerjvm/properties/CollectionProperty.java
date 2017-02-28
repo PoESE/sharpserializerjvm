@@ -20,7 +20,7 @@
 package sx.kenji.sharpserializerjvm.properties;
 
 import uk.me.mantas.eternity.Logger;
-import uk.me.mantas.eternity.serializer.TypePair;
+import sx.kenji.sharpserializerjvm.TypePair;
 
 import java.util.ArrayList;
 import java.util.List;

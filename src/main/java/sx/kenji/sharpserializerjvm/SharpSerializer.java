@@ -24,8 +24,8 @@ package sx.kenji.sharpserializerjvm;
 
 import com.google.common.io.LittleEndianDataInputStream;
 import com.google.common.io.LittleEndianDataOutputStream;
+import sx.kenji.sharpserializerjvm.properties.*;
 import uk.me.mantas.eternity.Logger;
-import uk.me.mantas.eternity.serializer.properties.*;
 
 import java.io.*;
 import java.lang.reflect.Field;

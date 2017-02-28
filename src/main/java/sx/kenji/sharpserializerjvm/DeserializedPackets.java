@@ -19,10 +19,8 @@
 
 package sx.kenji.sharpserializerjvm;
 
-import uk.me.mantas.eternity.environment.Environment;
-import uk.me.mantas.eternity.factory.SharpSerializerFactory;
-import uk.me.mantas.eternity.serializer.properties.Property;
-import uk.me.mantas.eternity.serializer.properties.SimpleProperty;
+import sx.kenji.sharpserializerjvm.properties.Property;
+import sx.kenji.sharpserializerjvm.properties.SimpleProperty;
 
 import java.io.File;
 import java.io.FileNotFoundException;

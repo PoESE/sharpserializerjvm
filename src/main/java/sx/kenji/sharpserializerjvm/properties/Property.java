@@ -19,10 +19,9 @@
 
 package sx.kenji.sharpserializerjvm.properties;
 
+import sx.kenji.sharpserializerjvm.TypePair;
 import uk.me.mantas.eternity.Logger;
-import uk.me.mantas.eternity.serializer.TypePair;
 
-import java.util.List;
 import java.util.Optional;
 
 public abstract class Property {
