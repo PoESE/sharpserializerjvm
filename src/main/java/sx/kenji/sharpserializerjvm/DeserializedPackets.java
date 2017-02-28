@@ -29,12 +29,10 @@ import java.util.List;
 public class DeserializedPackets {
 	private List<Property> packets;
 	private final SimpleProperty count;
-	private final SharpSerializerFactory sharpSerializer;
 
 	public DeserializedPackets (final List<Property> packets, final SimpleProperty count) {
 		this.packets = packets;
 		this.count = count;
-		sharpSerializer = Environment.getInstance().factory().sharpSerializer();
 	}
 
 	public List<Property> getPackets () {
@@ -50,8 +48,7 @@ public class DeserializedPackets {
 	}
 
 	public void reserialize (final File destinationFile) throws FileNotFoundException {
-		final SharpSerializer serializer =
-			sharpSerializer.forFile(destinationFile.getAbsolutePath());
+		final SharpSerializer serializer = new SharpSerializer(destinationFile.getAbsolutePath());
 
 		serializer.serialize(count);
 		for (final Property property : packets) {

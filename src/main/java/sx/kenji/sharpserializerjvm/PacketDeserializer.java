@@ -36,8 +36,7 @@ public class PacketDeserializer {
 	private final SharpSerializer deserializer;
 
 	public PacketDeserializer (final File file) throws FileNotFoundException {
-		deserializer =
-			Environment.getInstance().factory().sharpSerializer().forFile(file.getAbsolutePath());
+		deserializer = new SharpSerializer(file.getAbsolutePath());
 	}
 
 	public PacketDeserializer (final String filename) throws FileNotFoundException {
