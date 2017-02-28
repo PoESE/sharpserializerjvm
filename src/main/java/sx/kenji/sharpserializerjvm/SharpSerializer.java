@@ -24,8 +24,9 @@ package sx.kenji.sharpserializerjvm;
 
 import com.google.common.io.LittleEndianDataInputStream;
 import com.google.common.io.LittleEndianDataOutputStream;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import sx.kenji.sharpserializerjvm.properties.*;
-import uk.me.mantas.eternity.Logger;
 
 import java.io.*;
 import java.lang.reflect.Field;
@@ -37,7 +38,7 @@ import static java.util.Map.Entry;
 
 
 public class SharpSerializer {
-	private static final Logger logger = Logger.getLogger(SharpSerializer.class);
+	private static final Logger logger = LoggerFactory.getLogger(SharpSerializer.class);
 
 	public static final Map<String, Class> typeMap = TypeMap.map;
 	private Map<Integer, Property> propertyCache = new HashMap<>();
@@ -91,7 +92,7 @@ public class SharpSerializer {
 			}
 		} catch (IOException e) {
 			logger.error(
-				"Error opening target file '%s' for deserializing: %s%n"
+				"Error opening target file '%s' for deserializing: `{}`."
 				, targetFile
 				, e.getMessage());
 		}
@@ -116,7 +117,7 @@ public class SharpSerializer {
 			}
 		} catch (IOException e) {
 			logger.error(
-				"Error opening target file '%s' for serializing: %s%n"
+				"Error opening target file '%s' for serializing: `{}`."
 				, targetFile
 				, e.getMessage());
 		}
@@ -132,7 +133,7 @@ public class SharpSerializer {
 
 	private Property createObject (Property property) {
 		if (property == null) {
-			logger.error("Property is null!%n");
+			logger.error("Property is null.");
 			return null;
 		}
 
@@ -143,7 +144,7 @@ public class SharpSerializer {
 
 		if (property.type == null) {
 			logger.error(
-				"Tried to create an object from a property with no type!%n");
+				"Tried to create an object from a property with no type.");
 
 			return null;
 		}
@@ -157,7 +158,7 @@ public class SharpSerializer {
 		}
 
 		if (!(property instanceof ReferenceTargetProperty)) {
-			logger.error("Don't know what to do with this property!%n");
+			logger.error("Don't know what to do with this property.");
 			return null;
 		}
 
@@ -172,7 +173,7 @@ public class SharpSerializer {
 
 		Property value = createObjectCore(property);
 		if (value == null) {
-			logger.error("Unimplemented property type!%n");
+			logger.error("Unimplemented property type.");
 			return null;
 		}
 
@@ -226,12 +227,12 @@ public class SharpSerializer {
 			}
 		} catch (NoSuchMethodException e) {
 			logger.error(
-				"Supposed 'Collection' class '%s' had no add method: %s%n"
+				"Supposed 'Collection' class `{}` had no add method: `{}`."
 				, collection.getClass().getSimpleName()
 				, e.getMessage());
 		} catch (InvocationTargetException | IllegalAccessException e) {
 			logger.error(
-				"Unable to call add method on class '%s': %s%n"
+				"Unable to call add method on class `{}`: `{}`."
 				, collection.getClass().getSimpleName()
 				, e.getMessage());
 		}
@@ -263,12 +264,12 @@ public class SharpSerializer {
 			}
 		} catch (NoSuchMethodException e) {
 			logger.error(
-				"Supposed 'Dictionary' class '%s' had no put method: %s%n"
+				"Supposed 'Dictionary' class `{}` had no put method: `{}`."
 				, dictionary.getClass().getSimpleName()
 				, e.getMessage());
 		} catch (InvocationTargetException | IllegalAccessException e) {
 			logger.error(
-				"Unable to call put method on class '%s': %s%n"
+				"Unable to call put method on class `{}`: `{}`."
 				, dictionary.getClass().getSimpleName()
 				, e.getMessage());
 		}
@@ -323,7 +324,7 @@ public class SharpSerializer {
 				field = obj.getClass().getField(property.name);
 			} catch (NoSuchFieldException e) {
 				logger.error(
-					"Class '%s' has no field '%s': %s%n"
+					"Class '%s' has no field `{}`: `{}`."
 					, obj.getClass().getSimpleName()
 					, property.name
 					, e.getMessage());
@@ -340,7 +341,7 @@ public class SharpSerializer {
 				field.set(obj, value.obj);
 			} catch (IllegalAccessException | IllegalArgumentException e) {
 				logger.error(
-					"Unable to set field '%s' of class '%s': %s%n"
+					"Unable to set field `{}` of class `{}`: `{}`."
 					, property.name
 					, obj.getClass().getSimpleName()
 					, e.getMessage());
@@ -357,7 +358,7 @@ public class SharpSerializer {
 			return type.newInstance();
 		} catch (InstantiationException | IllegalAccessException e) {
 			logger.error(
-				"Unable to instantiate object of type '%s': %s%n"
+				"Unable to instantiate object of type `{}`: `{}`."
 				, type.getSimpleName()
 				, e.getMessage());
 		}

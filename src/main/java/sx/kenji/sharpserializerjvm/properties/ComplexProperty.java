@@ -19,15 +19,16 @@
 
 package sx.kenji.sharpserializerjvm.properties;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import sx.kenji.sharpserializerjvm.TypePair;
-import uk.me.mantas.eternity.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 public class ComplexProperty extends ReferenceTargetProperty {
-	private static final Logger logger = Logger.getLogger(ComplexProperty.class);
+	private static final Logger logger = LoggerFactory.getLogger(ComplexProperty.class);
 	public List<Property> properties = new ArrayList<>();
 
 	public ComplexProperty (String name, TypePair type) {
@@ -46,7 +47,7 @@ public class ComplexProperty extends ReferenceTargetProperty {
 			properties = ((ComplexProperty) source).properties;
 		} else {
 			logger.error(
-				"Tried to make ComplexProperty flat copy of %s!%n"
+				"Tried to make ComplexProperty flat copy of `{}`."
 				, source.getClass().getSimpleName());
 		}
 	}

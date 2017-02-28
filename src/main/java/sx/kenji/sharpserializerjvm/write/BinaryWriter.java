@@ -22,8 +22,9 @@ package sx.kenji.sharpserializerjvm.write;
 import com.google.common.primitives.Ints;
 import com.google.common.primitives.Longs;
 import com.google.common.primitives.UnsignedInteger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import sx.kenji.sharpserializerjvm.CSharpType;
-import uk.me.mantas.eternity.Logger;
 
 import java.io.DataOutput;
 import java.io.IOException;
@@ -33,7 +34,7 @@ import java.nio.ByteBuffer;
 import java.util.UUID;
 
 public class BinaryWriter {
-	private static final Logger logger = Logger.getLogger(BinaryWriter.class);
+	private static final Logger logger = LoggerFactory.getLogger(BinaryWriter.class);
 	public DataOutput out;
 
 	public BinaryWriter (DataOutput out) {
@@ -148,7 +149,7 @@ public class BinaryWriter {
 
 			logger.error(
 				"Supposed enum value couldn't be "
-				+ "matched with any enum constants!%n");
+				+ "matched with any enum constants.");
 
 			return;
 		}
@@ -159,12 +160,12 @@ public class BinaryWriter {
 		}
 
 		if (value instanceof Class) {
-			logger.error("Trying to write Class type unimplemented!%n");
+			logger.error("Trying to write Class type unimplemented.");
 			return;
 		}
 
 		logger.error(
-			"Don't know how to write object of type '%s'!%n"
+			"Don't know how to write object of type `{}`."
 			, value.getClass().getSimpleName());
 	}
 

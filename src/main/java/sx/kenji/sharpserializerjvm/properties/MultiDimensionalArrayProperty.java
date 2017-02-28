@@ -19,14 +19,15 @@
 
 package sx.kenji.sharpserializerjvm.properties;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import sx.kenji.sharpserializerjvm.TypePair;
-import uk.me.mantas.eternity.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class MultiDimensionalArrayProperty extends ReferenceTargetProperty {
-	private static final Logger logger = Logger.getLogger(MultiDimensionalArrayProperty.class);
+	private static final Logger logger = LoggerFactory.getLogger(MultiDimensionalArrayProperty.class);
 	public TypePair elementType;
 	public List<MultiDimensionalArrayItem> items = new ArrayList<>();
 	public List<ArrayDimension> dimensions = new ArrayList<>();
@@ -44,7 +45,7 @@ public class MultiDimensionalArrayProperty extends ReferenceTargetProperty {
 			items = ((MultiDimensionalArrayProperty) source).items;
 		} else {
 			logger.error(
-				"Tried to make MultiDimensionalArray flat copy of '%s'!%n"
+				"Tried to make MultiDimensionalArray flat copy of `{}`."
 				, source.getClass().getSimpleName());
 		}
 	}

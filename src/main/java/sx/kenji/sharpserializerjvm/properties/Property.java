@@ -19,13 +19,14 @@
 
 package sx.kenji.sharpserializerjvm.properties;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import sx.kenji.sharpserializerjvm.TypePair;
-import uk.me.mantas.eternity.Logger;
 
 import java.util.Optional;
 
 public abstract class Property {
-	private static final Logger logger = Logger.getLogger(Property.class);
+	private static final Logger logger = LoggerFactory.getLogger(Property.class);
 	public String name;
 	public TypePair type;
 	public Property parent;
@@ -70,7 +71,7 @@ public abstract class Property {
 			default:
 				logger.error(
 					"Unimplemented Property.createInstance for "
-					+ "property of type '%s'!%n", art.name());
+					+ "property of type `{}`.", art.name());
 
 				return null;
 		}
@@ -83,7 +84,7 @@ public abstract class Property {
 
 		final Optional<Property> subProperty = find(property, propertyName);
 		if (!subProperty.isPresent()) {
-			logger.error("Unable to locate sub-property with name '%s'.%n", propertyName);
+			logger.error("Unable to locate sub-property with name `{}`.", propertyName);
 			return false;
 		}
 
@@ -92,7 +93,7 @@ public abstract class Property {
 
 	public static boolean update (final Property property, final Object value) {
 		if (!(property instanceof SimpleProperty)) {
-			logger.error("Property was not a SimpleProperty.%n");
+			logger.error("Property was not a SimpleProperty.");
 			return false;
 		}
 

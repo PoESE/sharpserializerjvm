@@ -19,8 +19,9 @@
 
 package sx.kenji.sharpserializerjvm.properties;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import sx.kenji.sharpserializerjvm.TypePair;
-import uk.me.mantas.eternity.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +30,7 @@ import java.util.Optional;
 import static java.util.Map.Entry;
 
 public class DictionaryProperty extends ComplexProperty {
-	private static final Logger logger = Logger.getLogger(DictionaryProperty.class);
+	private static final Logger logger = LoggerFactory.getLogger(DictionaryProperty.class);
 	public TypePair keyType;
 	public TypePair valueType;
 	public List<Entry<Property, Property>> items = new ArrayList<>();
@@ -52,7 +53,7 @@ public class DictionaryProperty extends ComplexProperty {
 			items = ((DictionaryProperty) source).items;
 		} else {
 			logger.error(
-				"Tried to make DictionaryProperty flat copy of %s!%n"
+				"Tried to make DictionaryProperty flat copy of `{}`."
 				, source.getClass().getSimpleName());
 		}
 	}

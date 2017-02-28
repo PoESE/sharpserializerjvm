@@ -21,9 +21,10 @@ package sx.kenji.sharpserializerjvm;
 
 import com.google.common.primitives.Shorts;
 import com.google.common.primitives.UnsignedInteger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import sx.kenji.sharpserializerjvm.SharpSerializer.Elements;
 import sx.kenji.sharpserializerjvm.properties.*;
-import uk.me.mantas.eternity.Logger;
 
 import java.io.DataInput;
 import java.io.IOException;
@@ -34,9 +35,10 @@ import java.util.function.Function;
 
 import static java.util.AbstractMap.Entry;
 import static java.util.AbstractMap.SimpleImmutableEntry;
+import static sx.kenji.sharpserializerjvm.SharpSerializer.typeMap;
 
 public class Deserializer {
-	private static final Logger logger = Logger.getLogger(Deserializer.class);
+	private static final Logger logger = LoggerFactory.getLogger(Deserializer.class);
 	private final SharpSerializer parent;
 	private final DataInput stream;
 	private final List<String> names = new ArrayList<>();
@@ -54,7 +56,7 @@ public class Deserializer {
 			readHeader(types, this::convertToType);
 		} catch (IOException e) {
 			logger.error(
-				"An error occurred whilst deserializing: %s%n"
+				"An error occurred whilst deserializing: `{}`."
 				, e.getMessage());
 		}
 	}
@@ -77,7 +79,7 @@ public class Deserializer {
 		Class value = typeMap.get(key);
 		if (value == null) {
 			logger.error(
-				"Unable to find class corresponding to key '%s'.%n"
+				"Unable to find class corresponding to key `{}`."
 				, key);
 
 			return new TypePair(Object.class, s);
@@ -331,7 +333,7 @@ public class Deserializer {
 				subPropertyInfo = ownerType.getField(propertyName);
 			} catch (NoSuchFieldException e) {
 				logger.error(
-					"No such field '%s' for type '%s'!%n"
+					"No such field '%s' for type `{}`."
 					, propertyName
 					, ownerType.getSimpleName());
 			}
@@ -434,7 +436,7 @@ public class Deserializer {
 			}
 		} catch (Exception e) {
 			logger.error(
-				"Unable to read property value: %s%n", e.getMessage());
+				"Unable to read property value: `{}`.", e.getMessage());
 		}
 
 		if (expectedType != null) {
@@ -443,14 +445,14 @@ public class Deserializer {
 
 			if (javaType == null) {
 				logger.error(
-					"No mapping found for type '%s', expected type was '%s'.%n"
+					"No mapping found for type `{}`, expected type was `{}`."
 					, typeName
 					, expectedType.getSimpleName());
 			}
 
 			return javaType;
 		} else {
-			logger.error("Expected type was null in readValueCore.%n");
+			logger.error("Expected type was null in readValueCore.");
 		}
 
 		return null;
@@ -484,8 +486,8 @@ public class Deserializer {
 			}
 		} catch (ArrayIndexOutOfBoundsException e) {
 			logger.error(
-				"Tried to get enum value index #%d that "
-					+ "didn't exist for enum %s.%n"
+				"Tried to get enum value index `{}` that "
+					+ "didn't exist for enum `{}`."
 				, value
 				, type.getSimpleName());
 		}
@@ -517,7 +519,7 @@ public class Deserializer {
 				return new NullProperty(propertyName);
 
 			default:
-				logger.error("Unimplemented element ID #%d.%n", elementID);
+				logger.error("Unimplemented element ID `{}`.", elementID);
 		}
 
 		return null;
@@ -532,7 +534,7 @@ public class Deserializer {
 
 		if (cachedProperty == null) {
 			logger.error(
-				"No cached property found for reference ID #%d!%n"
+				"No cached property found for reference ID `{}`."
 				, referenceID);
 
 			return null;

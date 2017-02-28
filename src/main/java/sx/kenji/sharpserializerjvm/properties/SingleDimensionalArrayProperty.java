@@ -19,14 +19,15 @@
 
 package sx.kenji.sharpserializerjvm.properties;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import sx.kenji.sharpserializerjvm.TypePair;
-import uk.me.mantas.eternity.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class SingleDimensionalArrayProperty extends ReferenceTargetProperty {
-	private static final Logger logger = Logger.getLogger(SingleDimensionalArrayProperty.class);
+	private static final Logger logger = LoggerFactory.getLogger(SingleDimensionalArrayProperty.class);
 	public TypePair elementType;
 	public int lowerBound;
 	public List items = new ArrayList<>();
@@ -49,8 +50,7 @@ public class SingleDimensionalArrayProperty extends ReferenceTargetProperty {
 			items = ((SingleDimensionalArrayProperty) source).items;
 		} else {
 			logger.error(
-				"Tried to make SingleDimensionalArrayProperty "
-				+ "flat copy of %s!%n"
+				"Tried to make SingleDimensionalArrayProperty flat copy of `{}`."
 				, source.getClass().getSimpleName());
 		}
 	}
