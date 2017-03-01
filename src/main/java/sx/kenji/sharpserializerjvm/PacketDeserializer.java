@@ -26,6 +26,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 // This is a specialised instance of the Deserializer when we know we are dealing with a file that
@@ -65,5 +66,9 @@ public class PacketDeserializer {
 
 		final SimpleProperty countProperty = (SimpleProperty) objCountProp.get();
 		return Optional.of(new DeserializedPackets(deserialized, countProperty));
+	}
+
+	public void addTypes(Map<String, Class> types) {
+	    this.deserializer.addTypes(types);
 	}
 }

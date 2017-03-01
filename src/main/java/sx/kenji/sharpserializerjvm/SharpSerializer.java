@@ -40,7 +40,7 @@ import static java.util.Map.Entry;
 public class SharpSerializer {
 	private static final Logger logger = LoggerFactory.getLogger(SharpSerializer.class);
 
-	public static final Map<String, Class> typeMap = TypeMap.map;
+	static final Map<String, Class> typeMap = TypeMap.map;
 	private Map<Integer, Property> propertyCache = new HashMap<>();
 
 	public static class Elements {
@@ -121,6 +121,10 @@ public class SharpSerializer {
 				, targetFile
 				, e.getMessage());
 		}
+	}
+
+	public void addTypes(Map<String, Class> types) {
+		SharpSerializer.typeMap.putAll(types);
 	}
 
 	public Optional<Property> followReference (final ReferenceTargetProperty property) {
