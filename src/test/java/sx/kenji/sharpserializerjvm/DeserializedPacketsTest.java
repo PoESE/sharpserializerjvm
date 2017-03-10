@@ -19,42 +19,35 @@
 
 package sx.kenji.sharpserializerjvm;
 
+import org.junit.Test;
+import org.mockito.InOrder;
 import sx.kenji.sharpserializerjvm.properties.Property;
 import sx.kenji.sharpserializerjvm.properties.SimpleProperty;
 
 import java.io.File;
-import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.List;
 
-public class DeserializedPackets {
-	private List<Property> packets;
-	private final SimpleProperty count;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.inOrder;
 
-	public DeserializedPackets (final List<Property> packets, final SimpleProperty count) {
-		this.packets = packets;
-		this.count = count;
-	}
+public class DeserializedPacketsTest {
+	@Test
+	public void testReserialize() {
+		final SharpSerializer mockSerializer = mock(SharpSerializer.class);
+		final File mockFile = mock(File.class);
+		final Property mockProperty = mock(Property.class);
+		final SimpleProperty mockCount = mock(SimpleProperty.class);
+		final List<Property> components = new ArrayList<Property>() {{add(mockProperty);}};
+		final DeserializedPackets deserialized =
+			new DeserializedPackets(components, mockCount);
 
-	public List<Property> getPackets () {
-		return packets;
-	}
+		when(mockFile.getAbsolutePath()).thenReturn("");
+		deserialized.reserialize(mockSerializer);
 
-	public void setPackets (final List<Property> packets) {
-		this.packets = packets;
-	}
-
-	public SimpleProperty getCount () {
-		return count;
-	}
-
-	public void reserialize (final File destinationFile) throws FileNotFoundException {
-		this.reserialize(new SharpSerializer(destinationFile.getAbsolutePath()));
-	}
-
-	void reserialize(final SharpSerializer serializer) {
-		serializer.serialize(count);
-		for (final Property property : packets) {
-			serializer.serialize(property);
-		}
+		final InOrder inOrder = inOrder(mockSerializer);
+		inOrder.verify(mockSerializer).serialize(mockCount);
+		inOrder.verify(mockSerializer).serialize(mockProperty);
 	}
 }

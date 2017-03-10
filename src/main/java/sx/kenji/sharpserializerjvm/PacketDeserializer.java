@@ -44,6 +44,10 @@ public class PacketDeserializer {
 		this(new File(filename));
 	}
 
+	PacketDeserializer(final SharpSerializer sharpSerializer) {
+		this.deserializer = sharpSerializer;
+	}
+
 	public Optional<Property> followReference (final ReferenceTargetProperty property) {
 		return deserializer.followReference(property);
 	}
